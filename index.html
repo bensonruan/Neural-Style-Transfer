@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Arbitrary Style Transfer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style-transfer.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/4414288e8e.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/image@0.2.1/dist/magentaimage.min.js"></script>
+    <script src="js/jquery.keyframes.min.js"></script>
+  </head>  
+  <body>
+        <main>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-12 col-md-4 text-center">
+                        <div class="box">
+                            <input type="file" id="contentFile" target="content" class="inputfile inputfile-red" data-multiple-caption="{count} files selected" multiple />
+                            <label for="contentFile">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                                    <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                                </svg> 
+                                <span>Pick your own photo </span>
+                            </label>
+                        </div>
+                        <div class="imageContainer">
+                            <div class="scan scan-content"></div>
+                            <div class="screen">
+                                <img class="col-12 p-0" id="content" src="images/turtle.jpg"/> 
+                            </div>
+                            <em></em>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center pt-md-4 mt-md-4 pt-lg-5 mt-lg-5 d-none d-md-block">
+                        <div class="row">
+                            <div class="col-4 mt-3">
+                                <div class="arrowAnim left-to-right">
+                                    <div class="arrowSliding">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay1">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay2">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay3">
+                                        <div class="arrow"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4"><i class="fas fa-plus"></i></div>                        
+                            <div class="col-4 mt-3">
+                                <div class="arrowAnim right-to-left">
+                                    <div class="arrowSliding">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay1">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay2">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay3">
+                                        <div class="arrow"></div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="col-12 text-center p-0 pt-3 pb-3">
+                            <button class="btn btn-transfer">
+                                <i class="fas fa-random"></i> 
+                                <span>Click to transfer</span>
+                            </button>
+                        </div>
+                        <div class="col-12 arrowAnim top-to-bottom">
+                            <div class="arrowSliding">
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="arrowSliding delay1">
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="arrowSliding delay2">
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="arrowSliding delay3">
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 text-center">
+                        <div class="box">
+                            <input type="file" id="styleFile" target="style" class="inputfile inputfile-blue" data-multiple-caption="{count} files selected" multiple />
+                            <label for="styleFile">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                                    <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                                </svg> 
+                                <span>Pick your own style </span>
+                            </label>
+                        </div>
+                        <div class="imageContainer">
+                            <div class="scan scan-style"></div>
+                            <div class="screen">
+                                <img class="col-12 p-0" id="style" src="images/kadinsky.jpg"/> 
+                            </div>
+                            <em></em>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-block d-md-none">
+                    <div class="row col-12 text-center p-0 m-0 mt-3">
+                        <div class="col-4 mt-3">
+                            <div class="arrowAnim leftTop-to-rightBottom">
+                                <div class="arrowSliding">
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="arrowSliding delay1">
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="arrowSliding delay2">
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="arrowSliding delay3">
+                                    <div class="arrow"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4"><i class="fas fa-plus"></i></div>                        
+                        <div class="col-4 mt-3">
+                            <div class="arrowAnim rightTop-to-leftBottom">
+                                <div class="arrowSliding">
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="arrowSliding delay1">
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="arrowSliding delay2">
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="arrowSliding delay3">
+                                    <div class="arrow"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-block d-md-none">
+                    <div class="col-10 col-md-6 col-lg-4 offset-1 offset-md-3 offset-lg-4 text-center pt-3 pb-2">
+                        <button  class="btn btn-transfer">
+                            <i class="fas fa-random"></i> 
+                            <span>Click to transfer</span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="arrowAnim top-to-bottom">
+                            <div class="arrowSliding">
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="arrowSliding delay1">
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="arrowSliding delay2">
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="arrowSliding delay3">
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-md-3">
+                    <div class="col-12 col-md-4 offset-md-4 text-center">
+                            <div class="canvasContainer col-12 p-0">
+                                <i id="transfering" class="fas fa-spinner fa-spin d-none"></i>
+                                <canvas id="stylized" class="d-none"></canvas>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </main>
+
+  <script src="js/style-transfer.js"></script>
+  </body>
+</html>
