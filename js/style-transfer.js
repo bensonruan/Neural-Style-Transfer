@@ -1,8 +1,8 @@
 const model = new mi.ArbitraryStyleTransferNetwork();
 const canvas = document.getElementById('stylized');
 const ctx = canvas.getContext('2d');
-const contentImg = document.getElementById('content');
-const styleImg = document.getElementById('style');
+const contentImg = document.getElementById('contentImg');
+const styleImg = document.getElementById('styleImg');
 let contentHeight;
 let styleHeight;
 
@@ -40,14 +40,14 @@ $( document ).ready(function() {
     });
 });
 
-$('#content').on('load', function () {
+$('#contentImg').on('load', function () {
     contentHeight = $(this).height();
     $('.canvasContainer').height(contentHeight);
 }).each(function() {
      if (this.complete) $(this).trigger('load');
 });
 
-$('#style').on('load', function () {
+$('#styleImg').on('load', function () {
     styleHeight = $(this).height();
 }).each(function() {
      if (this.complete) $(this).trigger('load');
