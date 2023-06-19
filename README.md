@@ -23,3 +23,6 @@ Browse to http://localhost/index.html
 * [jquery](https://code.jquery.com/jquery-3.3.1.min.js) - JQuery
 * [jQuery.Keyframes](https://github.com/Keyframes/jQuery.Keyframes) - This library allows dynamic generation of CSS keyframes with callback events and other niceness.
 * [magenta.js](https://github.com/tensorflow/magenta-js/tree/master/image) - JavaScript implementation of Magenta's image models uses TensorFlow.js for GPU-accelerated inference
+
+## Support me 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W6METMY)
